@@ -1,7 +1,9 @@
 // Fetch all agents from the JSON Server
 async function fetchAgents() {
   try {
-    const response = await fetch("http://localhost:3000/agents");
+    const response = await fetch(
+      "https://json-server-wlx8.onrender.com/agents"
+    );
     const data = await response.json();
     return data;
   } catch (error) {
@@ -49,7 +51,7 @@ document
     const newAgent = { name, email, phone, county };
 
     try {
-      await fetch("http://localhost:3000/agents", {
+      await fetch("https://json-server-wlx8.onrender.com/agents", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
