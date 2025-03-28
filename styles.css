@@ -1,4 +1,3 @@
-/* Global Styles */
 body {
   font-family: Arial, sans-serif;
   background-color: #f0f0f0;
@@ -6,12 +5,11 @@ body {
   padding: 0;
 }
 
-/* Navigation */
 nav {
   background-color: #333;
   color: white;
   padding: 10px 20px;
-  text-align: center;
+  text-align: right;
 }
 
 nav ul {
@@ -22,7 +20,7 @@ nav ul {
 
 nav ul li {
   display: inline;
-  margin: 0 20px;
+  margin-left: 20px;
 }
 
 nav ul li a {
@@ -36,26 +34,27 @@ nav ul li a:hover {
   color: #ff6600;
 }
 
-/* Flex Container for Main Sections */
-.main-sections {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
-  margin: 50px auto;
-  max-width: 1200px;
-}
-
-/* Individual Section Styling */
 .container {
+  max-width: 800px;
+  margin: 50px auto;
+  padding: 20px;
   background-color: #fff;
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  padding: 20px;
-  margin: 20px;
-  flex: 1 1 400px; /* Grow and shrink with a minimum width */
 }
 
-h1 {
+/* Add distinct sections for "Find Agent" and "Register Agent" */
+.find-agent-section,
+.register-agent-section {
+  margin-bottom: 40px;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.find-agent-section h1,
+.register-agent-section h1 {
   text-align: center;
   color: #333;
 }
@@ -64,7 +63,6 @@ label {
   font-weight: bold;
 }
 
-/* Form & Select/Input Styling */
 select,
 input[type="text"],
 input[type="email"],
@@ -76,7 +74,6 @@ input[type="tel"] {
   border: 1px solid #ccc;
 }
 
-/* Button Styling */
 button {
   padding: 10px 20px;
   background-color: #007bff;
@@ -109,20 +106,54 @@ button:hover {
   margin: 5px 0;
 }
 
-/* Responsive adjustments */
-@media (max-width: 599px) {
-  nav ul li {
-    display: block;
-    margin: 10px 0;
+/* Media Queries for Responsive Design */
+@media (min-width: 600px) {
+  .container {
+    max-width: 1000px;
+    padding: 30px;
   }
 
-  .main-sections {
-    flex-direction: column;
-    margin: 20px;
+  nav {
+    text-align: center;
+  }
+
+  nav ul li {
+    margin-left: 40px;
+  }
+}
+
+@media (min-width: 992px) {
+  .container {
+    max-width: 1200px;
+  }
+
+  button {
+    padding: 15px 30px;
+    font-size: 1.2em;
+  }
+
+  select,
+  input[type="text"],
+  input[type="email"],
+  input[type="tel"] {
+    padding: 15px;
+    font-size: 1.1em;
+  }
+}
+
+@media (max-width: 599px) {
+  nav ul {
+    text-align: center;
+  }
+
+  nav ul li {
+    display: block;
+    margin-left: 0;
+    margin-bottom: 10px;
   }
 
   .container {
-    margin: 10px auto;
+    margin: 20px auto;
     padding: 15px;
   }
 
@@ -131,6 +162,14 @@ button:hover {
   }
 
   button {
+    width: 100%;
+    padding: 10px;
+  }
+
+  select,
+  input[type="text"],
+  input[type="email"],
+  input[type="tel"] {
     width: 100%;
     padding: 10px;
   }
