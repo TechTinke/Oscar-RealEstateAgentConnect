@@ -1,23 +1,23 @@
-<body>
-  <nav>
-    <ul>
-      <li><a href="index.html">Home</a></li>
-      <li><a href="register.html">Register Agent</a></li>
-    </ul>
-  </nav>
-  <div class="main-sections">
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>OSCAR-REALESTATEAGENTCONNECT</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
     <div class="container">
       <h1>Find a Real Estate Agent</h1>
       <label for="county">Select County:</label>
       <select id="county">
         <option value="Nairobi">Nairobi</option>
         <option value="Mombasa">Mombasa</option>
-        <option value="Kiambu">Kiambu</option>
+        <option value="Kiambu">Kiambuu</option>
       </select>
       <button onclick="searchAgents()">Search</button>
       <div id="results"></div>
     </div>
-
     <div class="container">
       <h1>Register New Agent</h1>
       <form id="register-form">
@@ -30,8 +30,8 @@
         <label for="phone">Phone:</label>
         <input type="tel" id="phone" name="phone" required />
 
-        <label for="county-register">County:</label>
-        <select id="county-register" name="county" required>
+        <label for="county">County:</label>
+        <select id="county" name="county" required>
           <option value="Nairobi">Nairobi</option>
           <option value="Mombasa">Mombasa</option>
           <option value="Kiambu">Kiambu</option>
@@ -40,6 +40,6 @@
         <button type="submit">Register</button>
       </form>
     </div>
-  </div>
-  <script src="script.js"></script>
-</body>
+    <script src="script.js"></script>
+  </body>
+</html>
