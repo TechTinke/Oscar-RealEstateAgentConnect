@@ -1,107 +1,70 @@
-let agents = [
-  {
-    name: "Oscar Maingi",
-    email: "maingioscar@gmail.com",
-    phone: "0734567890",
-    county: "Nairobi",
-  },
-  {
-    name: "Praise Victoria",
-    email: "praisevictoria@gmail.com",
-    phone: "0787654321",
-    county: "Nairobi",
-  },
-  {
-    name: "Sharllyrose Wanjala",
-    email: "sharllyrosewanjala@gmail.com",
-    phone: "0745678901",
-    county: "Mombasa",
-  },
-  {
-    name: "Nelson Muriithi",
-    email: "nelsonmuriithi@gmail.com",
-    phone: "0756789012",
-    county: "Mombasa",
-  },
-  {
-    name: "Albert Byrone",
-    email: "albertbyrone@gmail.com",
-    phone: "0767890123",
-    county: "Kiambu",
-  },
-  {
-    name: "Esther Wangari",
-    email: "estherwangari@gmail.com",
-    phone: "0778901234",
-    county: "Kiambu",
-  },
-  {
-    name: "Michael Kibaya",
-    email: "michaelkibaya@gmail.com",
-    phone: "0789012345",
-    county: "Nairobi",
-  },
-  {
-    name: "Morris Mlewa",
-    email: "morrismlewa@gmail.com",
-    phone: "0790123456",
-    county: "Mombasa",
-  },
-  {
-    name: "Cate Somba",
-    email: "catesomba@gmail.com",
-    phone: "0701234567",
-    county: "Kiambu",
-  },
-  {
-    name: "Anne Yula",
-    email: "anneyula@gmail.com",
-    phone: "0712345678",
-    county: "Nairobi",
-  },
-];
+const API_URL = "YOUR_JSON_SERVER_URL/agents";
 
-// Load agents from local storage if available
-if (localStorage.getItem("agents")) {
-  agents = JSON.parse(localStorage.getItem("agents"));
-}
-
-function searchAgents() {
+// Function to fetch and display agents based on selected county
+async function searchAgents() {
   const county = document.getElementById("county").value;
   const results = document.getElementById("results");
-  results.innerHTML = "";
+  results.innerHTML = "<p>Loading agents...</p>";
 
-  const filteredAgents = agents.filter((agent) => agent.county === county);
+  try {
+    const response = await fetch(`${API_URL}?county=${county}`);
+    if (!response.ok) {
+      throw new Error("Network response was not ok");
+    }
+    const filteredAgents = await response.json();
 
-  if (filteredAgents.length > 0) {
-    filteredAgents.forEach((agent) => {
-      const agentDiv = document.createElement("div");
-      agentDiv.className = "agent";
-      agentDiv.innerHTML = `
-                <h3>${agent.name}</h3>
-                <p>Email: ${agent.email}</p>
-                <p>Phone: ${agent.phone}</p>
-                <p>County: ${agent.county}</p>
-            `;
-      results.appendChild(agentDiv);
-    });
-  } else {
-    results.innerHTML = "<p>No agents found in this county.</p>";
+    results.innerHTML = "";
+    if (filteredAgents.length > 0) {
+      filteredAgents.forEach((agent) => {
+        const agentDiv = document.createElement("div");
+        agentDiv.className = "agent";
+        agentDiv.innerHTML = `
+          <h3>${agent.name}</h3>
+          <p>Email: ${agent.email}</p>
+          <p>Phone: ${agent.phone}</p>
+          <p>County: ${agent.county}</p>
+        `;
+        results.appendChild(agentDiv);
+      });
+    } else {
+      results.innerHTML = "<p>No agents found in this county.</p>";
+    }
+  } catch (error) {
+    results.innerHTML = `<p>Error fetching agents: ${error.message}</p>`;
   }
 }
 
-document
-  .getElementById("register-form")
-  .addEventListener("submit", function (event) {
-    event.preventDefault();
-    const name = document.getElementById("name").value;
-    const email = document.getElementById("email").value;
-    const phone = document.getElementById("phone").value;
-    const county = document.getElementById("county").value;
+// Function to register a new agent
+async function registerAgent(event) {
+  event.preventDefault();
 
-    const newAgent = { name, email, phone, county };
-    agents.push(newAgent);
-    localStorage.setItem("agents", JSON.stringify(agents));
+  const name = document.getElementById("name").value;
+  const email = document.getElementById("email").value;
+  const phone = document.getElementById("phone").value;
+  // Use a unique id for form select element to avoid conflict with search select
+  const county = document.getElementById("county-register").value;
+
+  const newAgent = { name, email, phone, county };
+
+  try {
+    const response = await fetch(API_URL, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(newAgent),
+    });
+    if (!response.ok) {
+      throw new Error("Failed to register agent");
+    }
     alert("Agent registered successfully!");
     document.getElementById("register-form").reset();
-  });
+  } catch (error) {
+    alert(`Error: ${error.message}`);
+  }
+}
+
+// Attach event listeners
+document
+  .getElementById("register-form")
+  .addEventListener("submit", registerAgent);
