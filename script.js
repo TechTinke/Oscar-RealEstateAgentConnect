@@ -38,7 +38,7 @@ async function searchAgents() {
   }
 }
 
-// Register a new agent
+// Register a new real estate agent
 document
   .getElementById("register-form")
   .addEventListener("submit", async function (event) {
