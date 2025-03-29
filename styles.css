@@ -106,7 +106,7 @@ button:hover {
   margin: 5px 0;
 }
 
-/* Media Queries for Responsive Design */
+/* Media Queries for Responsive Design across different devices */
 @media (min-width: 600px) {
   .container {
     max-width: 1000px;
