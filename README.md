@@ -1,4 +1,4 @@
-REAL HOUSE ESTATE AGENT CONNECT
+OSCAR-REAL ESTATE AGENT CONNECT
 
 ---
 
@@ -8,8 +8,19 @@ Real House Estate Agent Connect
 ---
 
 Description
-Real House Estate Agent Connect is a simple web application that allows users to search for real estate agents based on their county. The platform allows agents to register with their details (name, email, phone, and county), and users can search for agents in specific counties. The application also provides About Us and Reach Us pages to provide users with more information and contact details.
-The project uses basic HTML, CSS, and JavaScript (with in-memory storage) to allow users to interact with registered agents and to register new agents.
+OSCAR-REALESTATECONNECT is a modern web application designed to connect users with real estate agents based on county. Unlike traditional platforms that list properties, this solution prioritizes direct agent-client connections by providing a structured agent directory.
+
+Key Features:
+
+1. Real Estate Agent Registration
+   • A registration form where new agents can enter their details (Name, Email, Phone, County).
+   • Submitted data is sent to a JSON Server instead of local storage.
+2. Search Agents by County
+   • Users can filter agents by county to find Real estate agents in their county.
+   • Search results are retrieved from the JSON Server dynamically.
+3. JSON Server Integration
+   • Agent data is stored in a JSON file hosted on a JSON Server.
+   • Fetch API is used to retrieve agent data dynamically instead of using in-memory storage.
 
 ---
 
@@ -26,42 +37,37 @@ Setup Instructions
 3. Open in Browser
    Open `index.html` in your preferred browser to run the application. The app doesn't require any server setup or backend, as it's a client-side application with in-memory storage.
 4. Agent Registration
-   You can register agents by navigating to the Register Agent page in the navigation bar. Once you submit the form with valid agent details, they will be added to the in-memory list, and users can search for them based on their county.
+   A new agent can register through the Register New Agent Form. Once you submit the form with valid agent details, they will be added to the json-server memory and users can search for them based on their county.
 
 ---
 
 Behavior-Driven Development (BDD)
+Feature 1: Register Real Estate Agent
+Scenario: Agent Registration
+Given: I am an unregistered and new real estate agent filling out the registration form,
+When: I enter my name, email, phone number, and county and submit the form,
+Then: My details should be sent and stored in the JSON Server instead of local storage.
 
-Feature 1: Register Agent
-Given: I am an administrator.
-When: I fill out the "Register Agent" form with valid agent details.
-Then: The agent should be added to the list and stored temporarily.
+---
 
-Feature 2: Search Agent by County
-Given: I am a user on the homepage.
-When: I select a county from the dropdown and click the "Search" button.
-Then: The list of agents for the selected county is displayed.
-
-Feature 3: Display About Us and Reach Us pages
-Given: I am a user on the platform.
-When: I click on "About Us" or "Reach Us" from the navigation.
-Then: I am redirected to the respective pages displaying information about the website or contact details.
+Feature 2: Search for Agents by County
+Scenario: Searching for Real Estate Agents
+Given: I am a user looking for an agent in my county,
+When I select a county and click the "Search" button,
+Then: I should see a list of agents from that county, retrieved from the JSON Server.
 
 ---
 
 Technologies Used
-
-- HTML5: For structuring the web pages.
-- CSS3: For styling and layout.
-- JavaScript: For handling dynamic functionality, including agent registration and search.
-- In-memory Storage: Used to store agent data temporarily (no database is used in this MVP version).
-- No external libraries: The project uses vanilla JS, HTML, and CSS only.
+🔹Frontend: HTML5, CSS3, JavaScript (Vanilla JS)
+🔹 Backend: JSON Server (Simulated database)
+🔹 Fetch API: Retrieves and displays agent data dynamically
+🔹 GitHub Pages: Hosting for the frontend
 
 ---
 
 Known Issues
 
-- The data is stored in the browser's memory and not a database
 - The platform does not yet support validation for duplicate agents.
 - No authentication or user roles are implemented. Any user can register an agent.
 
@@ -81,4 +87,4 @@ Copyright: © 2025 Oscar Maingi. All rights reserved.
 ---
 
 Link to Live Site (GitHub Pages)
-This project is hosted on GitHub Pages. You can access the live site at:
+This project is hosted on GitHub Pages. You can access the live site at: https://techtinke.github.io/Oscar-RealEstateAgentConnect/
